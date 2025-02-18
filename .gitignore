@@ -1,0 +1,51 @@
+.# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env/
+*.venv
+
+# Ignore Hugging Face model cache
+/app/.cache/huggingface/
+huggingface/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled and temporary files
+*.log
+*.tmp
+*.swp
+
+# Ignore Docker artifacts
+docker-compose.override.yml
+.envrc
+docker-compose.yml
+*.tar
+*.img
+*.container
+
+# Ignore FastAPI-related files
+*.db
+*.sqlite
+
+# Ignore IDE and editor configurations
+.vscode/
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignore build artifacts
+/build/
+dist/
+*.egg-info/
+*.idea/
