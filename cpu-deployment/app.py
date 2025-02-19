@@ -2,10 +2,17 @@ from fastapi import FastAPI,HTTPException
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 from pydantic import BaseModel
+from huggingface_hub import snapshot_download
+
 app = FastAPI()
 
 # Load the model and tokenizer
 model_path = "/app/llama-2-13b"
+model_dir = "/app"
+
+snapshot_download(repo_id=model_path,
+                  local_dir="./llama-2-13b-model",
+                  local_dir_use_symlinks=False)
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map="auto")
 #model = AutoModelForCausalLM.from_pretrained(MODEL_NAME).to("cuda") #TODO:

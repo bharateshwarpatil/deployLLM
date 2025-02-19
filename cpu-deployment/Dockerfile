@@ -10,12 +10,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ln -s /usr/bin/python3 /usr/bin/python && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 WORKDIR /app
-
-RUN git clone --depth 1 https://huggingface.co/meta-llama/Llama-2-13b-hf /app/llama-2-13b
 
 EXPOSE 8000
 

@@ -4,3 +4,4 @@ torchaudio==2.0.2 -f https://download.pytorch.org/whl/cpu/torch_stable.html
 transformers==4.30.2
 fastapi==0.95.1
 uvicorn==0.21.1
+huggingface_hub
