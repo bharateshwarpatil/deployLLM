@@ -8,6 +8,8 @@ app = FastAPI()
 model_path = "/app/llama-2-13b"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map="auto")
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model.to(device)
 #model = AutoModelForCausalLM.from_pretrained(MODEL_NAME).to("cuda") #TODO:
 
 @app.get("/")
@@ -29,8 +31,7 @@ class GenerateTextRequest(BaseModel):
 def generate_text(request: GenerateTextRequest):
     try:
         # Tokenize the input
-        inputs = tokenizer(request.prompt, return_tensors="pt").to("cuda")
-
+        inputs = tokenizer(request.prompt, return_tensors="pt").to(device)
         # Generate text with more control over parameters
         with torch.no_grad():  # Prevent gradient computation for efficiency
             output = model.generate(
